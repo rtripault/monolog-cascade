@@ -13,12 +13,12 @@
     ],
     "homepage": "https://github.com/theorchard/monolog-cascade",
     "require": {
-        "php": "^5.3.9 || ^7.0",
-        "symfony/config": "^2.7 || ^3.0 || ^4.0",
-        "symfony/options-resolver": "^2.7 || ^3.0 || ^4.0",
-        "symfony/serializer": "^2.7 || ^3.0 || ^4.0",
-        "symfony/yaml": "^2.7 || ^3.0 || ^4.0",
-        "monolog/monolog": "^1.13"
+        "php": "^7.2",
+        "symfony/config": "^2.7 || ^3.0 || ^4.0|| ^5.0",
+        "symfony/options-resolver": "^2.7 || ^3.0 || ^4.0 || ^5.0",
+        "symfony/serializer": "^2.7 || ^3.0 || ^4.0 || ^5.0",
+        "symfony/yaml": "^2.7 || ^3.0 || ^4.0 || ^5.0",
+        "monolog/monolog": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -31,16 +31,24 @@
         }
     },
     "require-dev": {
-        "mikey179/vfsStream": "^1.6",
-        "phpunit/phpcov": "^2.0",
-        "phpunit/phpunit": "^4.8",
+        "mikey179/vfsstream": "^1.6",
+        "phpunit/phpcov": "^6.0",
+        "phpunit/phpunit": "^8.0",
         "satooshi/php-coveralls": "^1.0",
-        "squizlabs/php_codesniffer": "^2.5"
+        "squizlabs/php_codesniffer": "^2.9",
+        "phpstan/phpstan": "^0.12.14",
+        "vimeo/psalm": "^3.9"
     },
     "prefer-stable": true,
     "extra": {
         "branch-alias": {
             "dev-master": "0.5.x-dev"
         }
+    },
+    "scripts": {
+        "qa:phpcs": "php vendor/bin/phpcs --standard=PSR12 src examples",
+        "qa:phpstan": "php vendor/bin/phpstan analyze --level 6 src --memory-limit=512M",
+        "qa:psalm": "php vendor/bin/psalm --show-info=false",
+        "phpunit": "php vendor/bin/phpunit --coverage-text --colors=always --testdox"
     }
 }

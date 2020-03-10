@@ -24,12 +24,12 @@ class PhpArray extends FileLoaderAbstract
     /**
      * Load a PHP file
      *
-     * @param  string $resource File path to a PHP file that returns an array
+     * @param  mixed $resource File path to a PHP file that returns an array
      * @param  string|null $type This is not used
      *
      * @return array Array containing data from the PHP file
      */
-    public function load($resource, $type = null)
+    public function load($resource, $type = null): array
     {
         $config = include $resource;
 
@@ -47,12 +47,12 @@ class PhpArray extends FileLoaderAbstract
      * /!\ This does not verify that the php file returns a valid array. An exception
      * will be thrown when it is loaded if that is not the case.
      *
-     * @param  string $resource Filepath
+     * @param  mixed $resource Filepath
      * @param  string $type Not used
      *
      * @return boolean Whether or not the passed in resource is supported by this loader
      */
-    public function supports($resource, $type = null)
+    public function supports($resource, $type = null): bool
     {
         return $this->isFile($resource) && $this->validateExtension($resource);
     }

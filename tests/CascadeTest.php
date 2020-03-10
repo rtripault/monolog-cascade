@@ -20,9 +20,9 @@ use Cascade\Cascade;
  *
  * @author Raphael Antonmattei <rantonmattei@theorchard.com>
  */
-class CascadeTest extends \PHPUnit_Framework_TestCase
+class CascadeTest extends \PHPUnit\Framework\TestCase
 {
-    public function teardown()
+    public function tearDown(): void
     {
         Registry::clear();
         parent::teardown();
@@ -47,11 +47,9 @@ class CascadeTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($logger, $logger2);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testRegistryWithInvalidName()
     {
+        $this->expectException(\TypeError::class);
         Cascade::getLogger(null);
     }
 

@@ -58,7 +58,7 @@ class ConstructorResolver
      * Convert the parameter names to camelCase for classes that have contructor
      * params defined in snake_case for consistency with the options
      */
-    public function initConstructorArgs()
+    public function initConstructorArgs(): void
     {
         $constructor = $this->reflected->getConstructor();
 
@@ -72,11 +72,11 @@ class ConstructorResolver
     }
 
     /**
-     * Returns the contructor args as an associative array
+     * Returns the constructor args as an associative array
      *
-     * @return array Contructor args
+     * @return array Constructor args
      */
-    public function getConstructorArgs()
+    public function getConstructorArgs(): array
     {
         return $this->constructorArgs;
     }
@@ -86,7 +86,7 @@ class ConstructorResolver
      *
      * @return \ReflectionClass
      */
-    public function getReflected()
+    public function getReflected(): \ReflectionClass
     {
         return $this->reflected;
     }
@@ -96,7 +96,7 @@ class ConstructorResolver
      *
      * @param  OptionsResolver $optionsResolver OptionResolver to configure
      */
-    protected function configureOptions(OptionsResolver $optionsResolver)
+    protected function configureOptions(OptionsResolver $optionsResolver): void
     {
         foreach ($this->constructorArgs as $name => $param) {
             if ($param->isOptional() && $param->isDefaultValueAvailable()) {
@@ -116,7 +116,7 @@ class ConstructorResolver
      *
      * @return array Array of ordered args
      */
-    public function hashToArgsArray($hashOfOptions)
+    public function hashToArgsArray(array $hashOfOptions): array
     {
         $optionsArray = new \SplFixedArray(count($hashOfOptions));
 
@@ -138,7 +138,7 @@ class ConstructorResolver
      *
      * @return array Array of resolved ordered args
      */
-    public function resolve(array $options)
+    public function resolve(array $options): array
     {
         $reflectedClassName = $this->reflected->getName();
 

@@ -87,7 +87,7 @@ class ClassLoader
     /**
      * Set the class you want to load from the raw option array
      */
-    protected function setClass()
+    protected function setClass(): void
     {
         if (!isset($this->rawOptions['class'])) {
             $this->rawOptions['class'] = static::DEFAULT_CLASS;
@@ -101,7 +101,7 @@ class ClassLoader
      * Recursively loads objects into any of the rawOptions that represent
      * a class
      */
-    protected function loadChildClasses()
+    protected function loadChildClasses(): void
     {
         foreach ($this->rawOptions as &$option) {
             if (is_array($option)
@@ -121,7 +121,7 @@ class ClassLoader
      *
      * @return mixed[] Array of options indexed by (camelCased) name
      */
-    public static function optionsToCamelCase(array $options)
+    public static function optionsToCamelCase(array $options): array
     {
         $optionsByName = array();
 
@@ -143,7 +143,7 @@ class ClassLoader
      *
      * @return array Array of constructorOptions and extraOptions
      */
-    private function resolveOptions()
+    private function resolveOptions(): array
     {
         $constructorResolver = new ConstructorResolver($this->reflected);
 
@@ -195,7 +195,7 @@ class ClassLoader
      *
      * @return boolean Whether or not an option is supported by the loader
      */
-    public function canHandle($extraOptionName)
+    public function canHandle($extraOptionName): bool
     {
         return
             isset(self::$extraOptionHandlers['*'][$extraOptionName]) ||
@@ -209,7 +209,7 @@ class ClassLoader
      *
      * @return \Closure|null Corresponding Closure object or null if not found
      */
-    public function getExtraOptionsHandler($extraOptionName)
+    public function getExtraOptionsHandler(string $extraOptionName): ?callable
     {
         // Check extraOption handlers that are valid for all classes
         if (isset(self::$extraOptionHandlers['*'][$extraOptionName])) {
@@ -230,7 +230,7 @@ class ClassLoader
      * @param  array $extraOptions Array of extra options (key => value)
      * @param  mixed $instance Instance you want to set options for
      */
-    public function loadExtraOptions($extraOptions, $instance)
+    public function loadExtraOptions(array $extraOptions, $instance): void
     {
         foreach ($extraOptions as $name => $value) {
             if ($this->reflected->hasMethod($name)) {

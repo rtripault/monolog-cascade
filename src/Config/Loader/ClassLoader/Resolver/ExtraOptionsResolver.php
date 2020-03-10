@@ -58,7 +58,7 @@ class ExtraOptionsResolver
      *
      * @param array $params Associative array of extra parameters we want to resolve against
      */
-    public function setParams(array $params = array())
+    public function setParams(array $params = array()): void
     {
         $this->params = $params;
     }
@@ -102,7 +102,7 @@ class ExtraOptionsResolver
      * @param  ClassLoader|null $classLoader Optional class loader if you want to use custom
      * handlers for some of the extra options
      */
-    protected function configureOptions(OptionsResolver $resolver, ClassLoader $classLoader = null)
+    protected function configureOptions(OptionsResolver $resolver, ClassLoader $classLoader = null): void
     {
         foreach ($this->params as $name) {
             if ($this->reflected->hasMethod($name)) {

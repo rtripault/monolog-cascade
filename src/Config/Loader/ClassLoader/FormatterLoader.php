@@ -59,7 +59,7 @@ class FormatterLoader extends ClassLoader
      *
      * @todo add handlers to handle extra options for all known Monolog formatters
      */
-    public static function initExtraOptionsHandlers()
+    public static function initExtraOptionsHandlers(): void
     {
         self::$extraOptionHandlers = array(
             'Monolog\Formatter\LineFormatter' => array(

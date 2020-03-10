@@ -32,7 +32,7 @@ class Json extends FileLoaderAbstract
      *
      * @return array Array containing data from the parsed JSON string or file
      */
-    public function load($resource, $type = null)
+    public function load($resource, $type = null): array
     {
         return json_decode($this->readFrom($resource), true);
     }
@@ -47,7 +47,7 @@ class Json extends FileLoaderAbstract
      *
      * @return boolean Whether or not the passed string is meant to be a JSON string
      */
-    private function isJson($string)
+    private function isJson(string $string): bool
     {
         return (
             !empty($string) &&
@@ -58,12 +58,12 @@ class Json extends FileLoaderAbstract
     /**
      * Return whether or not the passed in resource is supported by this loader
      *
-     * @param  string $resource Plain string or filepath
+     * @param  mixed $resource Plain string or filepath
      * @param  string $type Not used
      *
      * @return boolean Whether or not the passed in resource is supported by this loader
      */
-    public function supports($resource, $type = null)
+    public function supports($resource, $type = null): bool
     {
         if (is_string($resource)) {
             if ($this->isFile($resource)) {

@@ -14,19 +14,19 @@ use Cascade\Config\Loader\FileLoader\PhpArray as ArrayLoader;
 /**
  * Class PhpArrayTest
  */
-class PhpArrayTest extends \PHPUnit_Framework_TestCase
+class PhpArrayTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ArrayLoader
      */
     protected $loader;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->loader = new ArrayLoader(new FileLocator());
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->loader = null;
     }
@@ -42,11 +42,9 @@ class PhpArrayTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($this->loader->supports(__DIR__.'/../../../Fixtures/fixture_config.json'));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testThrowsExceptionWhenLoadingFileIfDoesNotReturnValidPhpArray()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $this->loader->load(__DIR__.'/../../../Fixtures/fixture_invalid_config.php');
     }
 

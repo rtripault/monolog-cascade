@@ -83,7 +83,7 @@ class Config
     /**
      * Load config options into the options array using the injected loader
      */
-    public function load()
+    public function load(): void
     {
         $this->options = $this->loader->load($this->input);
     }
@@ -91,7 +91,7 @@ class Config
     /**
      * Configure and register Logger(s) according to the options passed in
      */
-    public function configure()
+    public function configure(): void
     {
         if (!isset($this->options['disable_existing_loggers'])) {
             // We disable any existing loggers by default
@@ -128,7 +128,7 @@ class Config
      *
      * @param  array $formatters Array of formatter options
      */
-    protected function configureFormatters(array $formatters = array())
+    protected function configureFormatters(array $formatters = array()): void
     {
         foreach ($formatters as $formatterId => $formatterOptions) {
             $formatterLoader = new FormatterLoader($formatterOptions);
@@ -141,7 +141,7 @@ class Config
      *
      * @param  array $handlers Array of handler options
      */
-    protected function configureHandlers(array $handlers)
+    protected function configureHandlers(array $handlers): void
     {
         foreach ($handlers as $handlerId => $handlerOptions) {
             $handlerLoader = new HandlerLoader($handlerOptions, $this->formatters, $this->processors, $this->handlers);
@@ -154,7 +154,7 @@ class Config
      *
      * @param  array $processors Array of processor options
      */
-    protected function configureProcessors(array $processors)
+    protected function configureProcessors(array $processors): void
     {
         foreach ($processors as $processorName => $processorOptions) {
             $processorLoader = new ProcessorLoader($processorOptions, $this->processors);
@@ -167,7 +167,7 @@ class Config
      *
      * @param  array $loggers Array of logger options
      */
-    protected function configureLoggers(array $loggers)
+    protected function configureLoggers(array $loggers): void
     {
         foreach ($loggers as $loggerName => $loggerOptions) {
             $loggerLoader = new LoggerLoader($loggerName, $loggerOptions, $this->handlers, $this->processors);

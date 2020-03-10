@@ -21,12 +21,12 @@ use Cascade\Config\Loader\ClassLoader\LoggerLoader;
  *
  * @author Raphael Antonmattei <rantonmattei@theorchard.com>
  */
-class LoggerLoaderTest extends \PHPUnit_Framework_TestCase
+class LoggerLoaderTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Tear down function
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         Registry::clear();
@@ -56,11 +56,9 @@ class LoggerLoaderTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testResolveHandlersWithMismatch()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $options = array(
             'handlers' => array('unexisting_handler', 'test_handler_2')
         );
@@ -95,11 +93,9 @@ class LoggerLoaderTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testResolveProcessorsWithMismatch()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $dummyClosure = function () {
             // Empty function
         };

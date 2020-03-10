@@ -9,14 +9,14 @@ use Cascade\Util;
  *
  * @author Deniz Dogan <deniz@dogan.se>
  */
-class UtilTest extends \PHPUnit_Framework_TestCase
+class UtilTest extends \PHPUnit\Framework\TestCase
 {
-    public function testSnakeToCamelCase()
+    public function testSnakeToCamelCase(): void
     {
         // non-strings
-        $this->assertSame(null, Util::snakeToCamelCase(null));
-        $this->assertSame(null, Util::snakeToCamelCase(array()));
-        $this->assertSame(null, Util::snakeToCamelCase(1));
+        $this->assertNull(Util::snakeToCamelCase(null));
+        $this->assertNull(Util::snakeToCamelCase(array()));
+        $this->assertNull(Util::snakeToCamelCase(1));
 
         // strings
         $this->assertSame('', Util::snakeToCamelCase(''));

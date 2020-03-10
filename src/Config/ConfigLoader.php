@@ -31,7 +31,7 @@ class ConfigLoader extends DelegatingLoader
      * Locator
      * @var FileLocator
      */
-    protected $locator = null;
+    protected $locator;
 
     /**
      * Instantiate a Loader object
@@ -61,7 +61,7 @@ class ConfigLoader extends DelegatingLoader
      *
      * @return array Array of config options
      */
-    public function load($resource, $type = null)
+    public function load($resource, $type = null): array
     {
         return parent::load($resource);
     }

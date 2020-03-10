@@ -19,7 +19,7 @@ use Cascade\Config\Loader\ClassLoader\ProcessorLoader;
  *
  * @author Kate Burdon <kburdon@tableau.com>
  */
-class ProcessorLoaderTest extends \PHPUnit_Framework_TestCase
+class ProcessorLoaderTest extends \PHPUnit\Framework\TestCase
 {
     public function testProcessorLoader()
     {

@@ -19,7 +19,7 @@ use Symfony;
  *
  * @author Raphael Antonmattei <rantonmattei@theorchard.com>
  */
-class ExtraOptionsResolverTest extends \PHPUnit_Framework_TestCase
+class ExtraOptionsResolverTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Reflection class for which you want to resolve extra options
@@ -36,7 +36,7 @@ class ExtraOptionsResolverTest extends \PHPUnit_Framework_TestCase
     /**
      * Set up function
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->class = 'Cascade\Tests\Fixtures\SampleClass';
         $this->params = array('optionalA', 'optionalB');
@@ -50,7 +50,7 @@ class ExtraOptionsResolverTest extends \PHPUnit_Framework_TestCase
     /**
      * Tear down function
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->resolver = null;
         $this->class = null;
@@ -167,11 +167,13 @@ class ExtraOptionsResolverTest extends \PHPUnit_Framework_TestCase
      * Test resolving with invalid options. It should throw an exception.
      *
      * @param  array $invalidOptions Array of invalid options
+     *
      * @dataProvider invalidOptionsProvider
-     * @expectedException Symfony\Component\OptionsResolver\Exception\UndefinedOptionsException
+     *
      */
     public function testResolveWithInvalidOptions($invalidOptions)
     {
+        $this->expectException(Symfony\Component\OptionsResolver\Exception\UndefinedOptionsException::class);
         $this->resolver->resolve($invalidOptions);
     }
 }

@@ -20,7 +20,7 @@ use Symfony;
  *
  * @author Raphael Antonmattei <rantonmattei@theorchard.com>
  */
-class ConstructorResolverTest extends \PHPUnit_Framework_TestCase
+class ConstructorResolverTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Reflection class for which you want to resolve extra options
@@ -37,7 +37,7 @@ class ConstructorResolverTest extends \PHPUnit_Framework_TestCase
     /**
      * Set up function
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->class = 'Cascade\Tests\Fixtures\SampleClass';
         $this->resolver = new ConstructorResolver(new \ReflectionClass($this->class));
@@ -47,7 +47,7 @@ class ConstructorResolverTest extends \PHPUnit_Framework_TestCase
     /**
      * Tear down function
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->resolver = null;
         $this->class = null;
@@ -182,11 +182,13 @@ class ConstructorResolverTest extends \PHPUnit_Framework_TestCase
      * Test resolving with missing/incomplete options. It should throw an exception.
      *
      * @param  array $incompleteOptions Array of invalid options
+     *
      * @dataProvider missingOptionsProvider
-     * @expectedException Symfony\Component\OptionsResolver\Exception\MissingOptionsException
+     *
      */
     public function testResolveWithMissingOptions(array $incompleteOptions)
     {
+        $this->expectException(Symfony\Component\OptionsResolver\Exception\MissingOptionsException::class);
         $this->resolver->resolve($incompleteOptions);
     }
 
@@ -221,11 +223,13 @@ class ConstructorResolverTest extends \PHPUnit_Framework_TestCase
      * Test resolving with invalid options. It should throw an exception.
      *
      * @param  array $invalidOptions Array of invalid options
+     *
      * @dataProvider invalidOptionsProvider
-     * @expectedException Symfony\Component\OptionsResolver\Exception\UndefinedOptionsException
+     *
      */
     public function testResolveWithInvalidOptions($invalidOptions)
     {
+        $this->expectException(Symfony\Component\OptionsResolver\Exception\UndefinedOptionsException::class);
         $this->resolver->resolve($invalidOptions);
     }
 }

@@ -17,12 +17,12 @@ use Cascade\Config\Loader\ClassLoader\FormatterLoader;
  *
  * @author Raphael Antonmattei <rantonmattei@theorchard.com>
  */
-class FormatterLoaderTest extends \PHPUnit_Framework_TestCase
+class FormatterLoaderTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Set up function
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         new FormatterLoader(array());
@@ -31,7 +31,7 @@ class FormatterLoaderTest extends \PHPUnit_Framework_TestCase
     /**
      * Tear down function
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         FormatterLoader::$extraOptionHandlers = array();
         parent::tearDown();

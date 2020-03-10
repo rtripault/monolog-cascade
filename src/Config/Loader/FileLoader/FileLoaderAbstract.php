@@ -19,6 +19,9 @@ use Symfony\Component\Config\Loader\FileLoader;
  */
 abstract class FileLoaderAbstract extends FileLoader
 {
+    /**
+     * @var array
+     */
     public static $validExtensions = array();
 
     /**
@@ -30,7 +33,7 @@ abstract class FileLoaderAbstract extends FileLoader
      *
      * @return string Return a string from read file or directly from $input
      */
-    public function readFrom($input)
+    public function readFrom(string $input): string
     {
         if ($this->isFile($input)) {
             if (is_readable($input) === false) {
@@ -53,7 +56,7 @@ abstract class FileLoaderAbstract extends FileLoader
      *
      * @return boolean Whether or not the resource is a file
      */
-    public function isFile($resource)
+    public function isFile(string $resource): bool
     {
         return (strpos($resource, "\n") === false) && is_file($resource);
     }
@@ -65,7 +68,7 @@ abstract class FileLoaderAbstract extends FileLoader
      *
      * @return boolean Whether or not the extension is valid
      */
-    public function validateExtension($filepath)
+    public function validateExtension(string $filepath): bool
     {
         return in_array(pathinfo($filepath, PATHINFO_EXTENSION), static::$validExtensions, true);
     }
@@ -78,7 +81,7 @@ abstract class FileLoaderAbstract extends FileLoader
      *
      * @return array|mixed Return the section of an array or just a value
      */
-    public function getSectionOf($array, $section = '')
+    public function getSectionOf(array $array, string $section = '')
     {
         if (!empty($section) && array_key_exists($section, $array)) {
             return $array[$section];

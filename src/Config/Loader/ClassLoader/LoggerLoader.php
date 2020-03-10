@@ -79,7 +79,7 @@ class LoggerLoader
      *
      * @return Monolog\Handler\HandlerInterface[] Array of Monolog handlers
      */
-    public function resolveHandlers(array $loggerOptions, array $handlers)
+    public function resolveHandlers(array $loggerOptions, array $handlers): array
     {
         $handlerArray = array();
 
@@ -117,7 +117,7 @@ class LoggerLoader
      *
      * @return callable[] Array of Monolog processors
      */
-    public function resolveProcessors(array $loggerOptions, $processors)
+    public function resolveProcessors(array $loggerOptions, $processors): array
     {
         $processorArray = array();
 
@@ -147,9 +147,9 @@ class LoggerLoader
     /**
      * Add handlers to the Logger
      *
-     * @param Monolog\Handler\HandlerInterface[] Array of Monolog handlers
+     * @param Monolog\Handler\HandlerInterface[] $handlers Array of Monolog handlers
      */
-    private function addHandlers(array $handlers)
+    private function addHandlers(array $handlers): void
     {
         // We need to reverse the array because Monolog "pushes" handlers to top of the stack
         foreach (array_reverse($handlers) as $handler) {
@@ -160,9 +160,9 @@ class LoggerLoader
     /**
      * Add processors to the Logger
      *
-     * @param callable[] Array of Monolog processors
+     * @param callable[] $processors Array of Monolog processors
      */
-    private function addProcessors(array $processors)
+    private function addProcessors(array $processors): void
     {
         // We need to reverse the array because Monolog "pushes" processors to top of the stack
         foreach (array_reverse($processors) as $processor) {
@@ -175,7 +175,7 @@ class LoggerLoader
      *
      * @return Monolog\Logger Logger object
      */
-    public function load()
+    public function load(): Monolog\Logger
     {
         $this->addHandlers($this->resolveHandlers($this->loggerOptions, $this->handlers));
         $this->addProcessors($this->resolveProcessors($this->loggerOptions, $this->processors));

@@ -46,10 +46,10 @@ class Cascade
      * @return Logger Newly created Logger
      */
     public static function createLogger(
-        $name,
+        string $name,
         array $handlers = array(),
         array $processors = array()
-    ) {
+    ): Logger {
 
         if (empty($name)) {
             throw new \InvalidArgumentException('Logger name is required.');
@@ -69,7 +69,7 @@ class Cascade
      *
      * @return Logger Requested instance of Logger or new instance
      */
-    public static function getLogger($name)
+    public static function getLogger(string $name): Logger
     {
         return Registry::hasLogger($name) ? Registry::getInstance($name) : self::createLogger($name);
     }
@@ -82,7 +82,7 @@ class Cascade
      *
      * @return Logger Requested instance of Logger or new instance
      */
-    public static function logger($name)
+    public static function logger(string $name): Logger
     {
         return self::getLogger($name);
     }
@@ -92,7 +92,7 @@ class Cascade
      *
      * @return Config Array with configuration options
      */
-    public static function getConfig()
+    public static function getConfig(): Config
     {
         return self::$config;
     }
@@ -102,7 +102,7 @@ class Cascade
      *
      * @param string|array $resource Path to config file or configuration as string or array
      */
-    public static function fileConfig($resource)
+    public static function fileConfig($resource): void
     {
         self::$config = new Config($resource, new ConfigLoader());
         self::$config->load();
@@ -115,7 +115,7 @@ class Cascade
      *
      * @param string $configString Configuration in string form
      */
-    public static function loadConfigFromString($configString)
+    public static function loadConfigFromString(string $configString): void
     {
         self::fileConfig($configString);
     }
@@ -126,7 +126,7 @@ class Cascade
      *
      * @param array $configArray Configuration in array form
      */
-    public static function loadConfigFromArray($configArray)
+    public static function loadConfigFromArray(array $configArray): void
     {
         self::fileConfig($configArray);
     }

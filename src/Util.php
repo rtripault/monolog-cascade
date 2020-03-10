@@ -15,10 +15,10 @@ class Util
      *
      * If the input is not a string, null is returned.
      *
-     * @param string $input Input snake_case string
+     * @param mixed $input Input snake_case string
      * @return null|string Output camelCase string
      */
-    public static function snakeToCamelCase($input)
+    public static function snakeToCamelCase($input): ?string
     {
         if (!is_string($input)) {
             return null;
